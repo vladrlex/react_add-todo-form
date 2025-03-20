@@ -17,11 +17,11 @@ export type Todo = {
   userId: number;
 };
 
-export const App: React.FC = () => {
-  function getUserById(userId: number) {
-    return usersFromServer.find(user => user.id === userId) || null;
-  }
+function getUserById(userId: number) {
+  return usersFromServer.find(user => user.id === userId) || null;
+}
 
+export const App: React.FC = () => {
   const todos = todosFromServer.map(todo => ({
     ...todo,
     user: getUserById(todo.userId),
@@ -80,7 +80,7 @@ export const App: React.FC = () => {
     <div className="App">
       <h1>Add todo form</h1>
 
-      <form action="/api/todos" method="POST" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="field">
           <label className="label" htmlFor="post-title">
             {`Title: `}
